@@ -4,7 +4,7 @@ Welcome to Medusa, this is a sniper coded in GO.
 
 `
 Go is a compact, fast language built for Socket speed! Medusa is also a sniper made using sockets, its compact and easy to use 
-its also is user friendly with tutrials on how to do things
+its also user friendly.
 `
 
 Medusa offers GC, Microsoft, SFA + MFA Options.. we will soon also offer an account checker!
