@@ -69,7 +69,7 @@ func socketSending(bearer string, name string, dropDelay float64) {
 
 }
 
-func testingGC(bearerGC string, name string, dropDelay float64) {
+func testingGC(name string, bearerGC string, dropDelay float64) {
 
 	conn, _ := tls.Dial("tcp", "api.minecraftservices.com"+":443", nil)
 	var js = []byte(`{"profileName":"` + name + `"}`)
