@@ -163,13 +163,13 @@ func main() {
 
 		dropTime_UNIX := unixINPUT
 
-		testee := time.Unix(dropTime_UNIX, 0)
+		snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
 
-		drop_piece := time.Until(testee) + time.Duration(dropDelay)*time.Millisecond
+		fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
 
-		fmt.Println("\n[+] Dropping at @:", testee, drop_piece, "\n")
-
-		time.Sleep(drop_piece)
+		for time.Now().Unix() < snipe_time {
+			time.Sleep(1 * time.Millisecond)
+		}
 
 		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
 
@@ -207,13 +207,13 @@ func main() {
 
 		dropTime_UNIX := unixINPUT
 
-		testee := time.Unix(dropTime_UNIX, 0)
+		snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
 
-		drop_piece := time.Until(testee) + time.Duration(dropDelay)*time.Millisecond
+		fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
 
-		fmt.Println("\n[+] Dropping at @:", testee, drop_piece, "\n")
-
-		time.Sleep(drop_piece)
+		for time.Now().Unix() < snipe_time {
+			time.Sleep(1 * time.Millisecond)
+		}
 
 		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
 
@@ -250,13 +250,13 @@ func main() {
 
 		dropTime_UNIX := unixINPUT
 
-		testee := time.Unix(dropTime_UNIX, 0)
+		snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
 
-		drop_piece := time.Until(testee) + time.Duration(dropDelay)*time.Millisecond
+		fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
 
-		fmt.Println("\n[+] Dropping at @:", testee, drop_piece, "\n")
-
-		time.Sleep(drop_piece)
+		for time.Now().Unix() < snipe_time {
+			time.Sleep(1 * time.Millisecond)
+		}
 
 		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
 
