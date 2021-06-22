@@ -19,10 +19,10 @@ How to Install & Run
 To install GO: https://golang.org/doc/install
 Medusa is simple to install from there! open your command within the folders DIR then do go run .
 if your on SSH use: 
--
-[1]: git clone https://github.com/MedusaGO/Medusa
-[2]: cd Medusa
-[3]: go run .
+
+`[1]: git clone https://github.com/MedusaGO/Medusa`
+`[2]: cd Medusa`
+`[3]: go run .`
 
 Any Imports??
 -
