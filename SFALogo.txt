@@ -1,0 +1,8 @@
+       
+
+Welcome to the SFA/MFA Sniper!
+
+To get started please follow these steps:
+- 1: Enter accounts.txt
+- 2: add in your information like so email:password OR email:password:sec1:sec2:sec3
+- 3: After thats done load up the sniper!! have fun >w<

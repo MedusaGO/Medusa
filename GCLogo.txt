@@ -1,0 +1,10 @@
+
+
+Welcome to the GC Sniper!
+
+To get started please follow these steps to get your Bearer token:
+- 1: Make a Microsoft Account (if you dont have fun)
+- 2: Redeem your gift card!
+- 3: Please head here, it has a tutorial plus the script you need https://kqzz.github.io/mc-bearer-token/ (credits kqzz)
+- 4: Paste the code into your console on Inspect Element, this print your bearer token
+- 5: Paste it into the bearer token area!!! thats it have fun sniping uwu <3

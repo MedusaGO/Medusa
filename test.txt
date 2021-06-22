@@ -1,0 +1,11 @@
+
+VER - 2.2.0
+
+~ 1: Finished MFA
+~ 2: Added Manual input for a temp fix
+~ 3: Redoing Delay (havent worked on it but i will soon)
+
+Disclaimer: 
+
+Make SURE you have an account info in accounts.txt before 
+using SFA/MFA IF NOT your get a runtime error! <3

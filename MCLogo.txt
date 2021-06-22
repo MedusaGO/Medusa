@@ -1,0 +1,8 @@
+
+
+Welcome to the Microsoft Sniper!
+
+To get started please follow these steps to get your Bearer token
+- 1: Please head here, it has a tutorial plus the code you need https://kqzz.github.io/mc-bearer-token/ (credits kqzz)
+- 2: Paste the code into your console on Inspect Element, this print your bearer token
+- 3: Paste it into the bearer token area!!! thats it have fun sniping >u<
