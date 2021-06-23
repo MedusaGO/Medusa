@@ -98,12 +98,13 @@ func main() {
 		fmt.Println("[INFO] Unix Timestamp [TEMP]:")
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
+
 		/*
 			dropTime_UNIX := unixINPUT
 
 			testee := time.Unix(dropTime_UNIX, 0)
 
-			drop_piece := time.Until(testee) + time.Duration(dropDelay)*time.Millisecond
+			drop_piece := time.Until(testee) - time.Duration(dropDelay)*time.Millisecond
 
 			fmt.Println("\n[+] Dropping at @:", testee, drop_piece, "\n")
 
@@ -175,11 +176,7 @@ func main() {
 
 		go socketSending(bearer, name, dropDelay)
 
-		time.Sleep(1 * time.Second)
-
 		Gold.Println("\n•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:")
-
-		time.Sleep(1 * time.Second)
 
 	} else if options == 3 {
 
