@@ -161,7 +161,7 @@ func sendWebHook(wh string, id string, name string, dropDelay float64) {
 		os.Exit(0)
 	}
 
-	webhookINFO := fmt.Sprintf(`{"username": "AthenaGO", "avatar_url": "https://cdn.discordapp.com/attachments/834840617901096990/855873132577423390/a.png", "embeds": [{"title": ":trident: **__New Smite!__** :trident:", "color": "14177041", "image": {"url": "https://cdn.discordapp.com/attachments/834840617901096990/855922075629518869/concours-discord-cartes-voeux-fortnite-france-6.png"}, "fields": [{"name": "User:", "value": "<@%v>", "inline": "false"},{"name": "Name Sniped: :smoking:", "value": "%v", "inline": "false"},{"name": "Delay used: :cloud_lightning:", "value": "%v", "inline": "false"},{"name": "Discord", "value": "https://discord.gg/WtQ2d7NNQ4", "inline": "false"}]}]}`, id, name, dropDelay)
+	webhookINFO := fmt.Sprintf(`{"username": "Medusa", "avatar_url": "https://cdn.discordapp.com/attachments/834840617901096990/855873132577423390/a.png", "embeds": [{"title": ":snake: **__New Smite!__** :snake:", "color": "14177041", "fields": [{"name": "User:", "value": "<@%v>", "inline": "false"},{"name": "Name Sniped: :smoking:", "value": "%v", "inline": "false"},{"name": "Delay used: :cloud_lightning:", "value": "%v", "inline": "false"},{"name": "Discord", "value": "https://discord.gg/WtQ2d7NNQ4", "inline": "false"}]}]}`, id, name, dropDelay)
 	newRequest, _ := http.NewRequest("POST", wh, bytes.NewReader([]byte(webhookINFO)))
 	newRequest.Header.Set("Content-Type", "application/json")
 
