@@ -37,7 +37,7 @@ func main() {
 
 	c := color.New(color.FgHiRed).Add(color.Bold).Add(color.Underline)
 	b3 := color.New(color.FgHiBlue).Add(color.Bold)
-	Gold := color.New(color.FgHiYellow).Add(color.Bold)
+	//Gold := color.New(color.FgHiYellow).Add(color.Bold)
 
 	c.Println(
 		`
@@ -98,22 +98,21 @@ func main() {
 		fmt.Println("[INFO] Unix Timestamp [TEMP]:")
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
-
-		dropTime_UNIX := unixINPUT
-
-		testee := time.Unix(dropTime_UNIX, 0)
-
-		drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
-
-		fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
-
-		time.Sleep(drop_piece)
 		/*
 			dropTime_UNIX := unixINPUT
 
-			snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
+			testee := time.Unix(dropTime_UNIX, 0)
 
-			fmt.Println(snipe_time)
+			drop_piece := time.Until(testee) - time.Duration(float64(dropDelay)*float64(1000))
+
+			fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
+
+			time.Sleep(drop_piece)
+
+
+			dropTime_UNIX := unixINPUT
+
+			snipe_time := dropTime_UNIX - (float64(dropDelay / 1000))
 
 			fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
 
@@ -121,15 +120,14 @@ func main() {
 				time.Sleep(1 * time.Millisecond)
 			}
 		*/
-		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
 
-		go socketSending(bearer, name, dropDelay)
+		dropStamp := time.Unix(unixINPUT, 0)
+		delay := dropDelay
 
-		time.Sleep(1 * time.Second)
+		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
 
-		Gold.Println("\n•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:")
-
-		time.Sleep(1 * time.Second)
+		socketSending(bearer, name)
+		fmt.Println("test")
 
 	} else if options == 2 {
 
@@ -162,25 +160,12 @@ func main() {
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
 
-		dropTime_UNIX := unixINPUT
+		dropStamp := time.Unix(unixINPUT, 0)
+		delay := dropDelay
 
-		testee := time.Unix(dropTime_UNIX, 0)
+		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
 
-		drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
-
-		fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
-
-		time.Sleep(drop_piece)
-
-		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
-
-		go socketSending(bearer, name, dropDelay)
-
-		time.Sleep(1 * time.Second)
-
-		Gold.Println("\n•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:")
-
-		time.Sleep(1 * time.Second)
+		go socketSending(bearer, name)
 
 	} else if options == 3 {
 
@@ -210,28 +195,19 @@ func main() {
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
 
-		dropTime_UNIX := unixINPUT
+		dropStamp := time.Unix(unixINPUT, 0)
+		delay := dropDelay
 
-		testee := time.Unix(dropTime_UNIX, 0)
-
-		drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
-
-		fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
-
-		time.Sleep(drop_piece)
-
-		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
+		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
 
 		if verSel == 1 {
-			go testingGC(name, bearerGC, dropDelay)
+			go testingGC(name, bearerGC)
 		} else if verSel == 2 {
 			sendMojangRequestsGC(name, bearerGC)
 		} else {
 			fmt.Println("[ERR] Please choose the correct input..")
 			os.Exit(403)
 		}
-
-		Gold.Println("\n•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:")
 
 	} else if options == 4 {
 		b, err := ioutil.ReadFile("MCLogo.txt")
@@ -256,23 +232,12 @@ func main() {
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
 
-		dropTime_UNIX := unixINPUT
+		dropStamp := time.Unix(unixINPUT, 0)
+		delay := dropDelay
 
-		testee := time.Unix(dropTime_UNIX, 0)
+		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
 
-		drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
-
-		fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
-
-		time.Sleep(drop_piece)
-
-		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
-
-		go socketSendingMS(url1, bearerMS, name, dropDelay)
-
-		Gold.Println("\n•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:")
-
-		time.Sleep(1 * time.Second)
+		go socketSendingMS(url1, bearerMS, name)
 
 	}
 
