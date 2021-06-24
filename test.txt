@@ -1,9 +1,7 @@
 
-VER - 2.2.0
+VER - 2.2.5
 
-~ 1: Finished MFA
-~ 2: Added Manual input for a temp fix
-~ 3: Redoing Delay (havent worked on it but i will soon)
+~ 1: Fxed delay System
 
 Disclaimer: 
 
