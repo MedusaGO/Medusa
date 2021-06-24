@@ -98,15 +98,14 @@ func main() {
 		fmt.Println("[INFO] Unix Timestamp [TEMP]:")
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
-
 		/*
 			dropTime_UNIX := unixINPUT
 
 			testee := time.Unix(dropTime_UNIX, 0)
 
-			drop_piece := time.Until(testee) - time.Duration(dropDelay)*time.Millisecond
+			drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
 
-			fmt.Println("\n[+] Dropping at @:", testee, drop_piece, "\n")
+			fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
 
 			time.Sleep(drop_piece)
 		*/
@@ -114,6 +113,8 @@ func main() {
 		dropTime_UNIX := unixINPUT
 
 		snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
+
+		fmt.Println(snipe_time)
 
 		fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
 
@@ -164,19 +165,23 @@ func main() {
 
 		dropTime_UNIX := unixINPUT
 
-		snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
+		testee := time.Unix(dropTime_UNIX, 0)
 
-		fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
+		drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
 
-		for time.Now().Unix() < snipe_time {
-			time.Sleep(1 * time.Millisecond)
-		}
+		fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
+
+		time.Sleep(drop_piece)
 
 		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
 
 		go socketSending(bearer, name, dropDelay)
 
+		time.Sleep(1 * time.Second)
+
 		Gold.Println("\n•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:")
+
+		time.Sleep(1 * time.Second)
 
 	} else if options == 3 {
 
@@ -188,6 +193,7 @@ func main() {
 		fmt.Println("\n", string(b))
 
 		var bearerGC string
+		var verSel int
 
 		fmt.Println("\n[INFO] Bearer:")
 		b3.Print(">: ")
@@ -198,29 +204,35 @@ func main() {
 		fmt.Println("[INFO] Delay:")
 		b3.Print(">: ")
 		fmt.Scanln(&dropDelay)
-		fmt.Println("[INFO] Unix Timestamp [TEMP]:")
+		fmt.Println("[INFO] Sockets or HTTP [1 Sockets] [2 HTTP]:")
+		b3.Print(">: ")
+		fmt.Scanln(&verSel)
+		fmt.Println("\n[INFO] Unix Timestamp [TEMP]:")
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
 
 		dropTime_UNIX := unixINPUT
 
-		snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
+		testee := time.Unix(dropTime_UNIX, 0)
 
-		fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
+		drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
 
-		for time.Now().Unix() < snipe_time {
-			time.Sleep(1 * time.Millisecond)
-		}
+		fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
+
+		time.Sleep(drop_piece)
 
 		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
 
-		go testingGC(name, bearerGC, dropDelay)
-
-		time.Sleep(1 * time.Second)
+		if verSel == 1 {
+			go testingGC(name, bearerGC, dropDelay)
+		} else if verSel == 2 {
+			sendMojangRequestsGC(name, bearerGC)
+		} else {
+			fmt.Println("[ERR] Please choose the correct input..")
+			os.Exit(403)
+		}
 
 		Gold.Println("\n•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:")
-
-		time.Sleep(2 * time.Second)
 
 	} else if options == 4 {
 		b, err := ioutil.ReadFile("MCLogo.txt")
@@ -247,13 +259,13 @@ func main() {
 
 		dropTime_UNIX := unixINPUT
 
-		snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
+		testee := time.Unix(dropTime_UNIX, 0)
 
-		fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
+		drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
 
-		for time.Now().Unix() < snipe_time {
-			time.Sleep(1 * time.Millisecond)
-		}
+		fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
+
+		time.Sleep(drop_piece)
 
 		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
 
