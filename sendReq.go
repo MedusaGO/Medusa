@@ -37,17 +37,17 @@ func sendMojangRequestsGC(name, bearerGC string) string {
 	return ("a")
 }
 
-func socketSendingMS(url1 string, bearerMS string, name string, dropDelay float64) {
+func socketSendingMS(url1 string, bearerMS string, name string) {
 	oo, _ := url.Parse(url1)
 	conn, _ := tls.Dial("tcp", oo.Hostname()+":443", nil)
 
 	for i := 0; i != 2; i++ {
+		time2 := time.Now()
 		fmt.Fprintln(conn, "PUT /minecraft/profile/name/"+name+" HTTP/1.1\r\nHost: api.minecraftservices.com\r\nUser-Agent: Medusa/1.0\r\nAuthorization: bearer "+bearerMS+"\r\n\r\n")
-
 		time1 := time.Now()
 		go Speed(conn, bearerMS)
 
-		fmt.Println("[INFO] Sent:", formatTime(time1), "MS")
+		fmt.Println("[INFO] Sent:", time2.Sub(time1), "MS")
 
 		if i == 2 {
 			break
@@ -57,13 +57,14 @@ func socketSendingMS(url1 string, bearerMS string, name string, dropDelay float6
 
 }
 
-func socketSending(bearer string, name string, dropDelay float64) {
+func socketSending(bearer string, name string) {
 	conn, _ := tls.Dial("tcp", "api.minecraftservices.com"+":443", nil)
 
 	for i := 0; i != 2; i++ {
+		time2 := time.Now()
 		fmt.Fprintln(conn, "PUT /minecraft/profile/name/"+name+" HTTP/1.1\r\nHost: api.minecraftservices.com\r\nUser-Agent: Medusa/1.0\r\nAuthorization: bearer "+bearer+"\r\n\r\n")
-
-		fmt.Println("[INFO] Received:", time.Now().Format("02:05.99999"), "MS")
+		time1 := time.Now()
+		fmt.Println("[INFO] Sent:", time2.Sub(time1), "MS")
 		go Speed(conn, bearer)
 
 		if i == 2 {
@@ -75,19 +76,20 @@ func socketSending(bearer string, name string, dropDelay float64) {
 
 }
 
-func testingGC(name string, bearerGC string, dropDelay float64) {
+func testingGC(name string, bearerGC string) {
 
 	conn, _ := tls.Dial("tcp", "api.minecraftservices.com"+":443", nil)
 	var js = []byte(`{"profileName":"` + name + `"}`)
 	length := strconv.Itoa(len(string(js)))
 
 	for i := 0; i != 6; i++ {
+		time2 := time.Now()
 		payload := "POST /minecraft/profile HTTP/1.1\r\nHost: api.minecraftservices.com\r\nConnection: close\r\nContent-Length:" + length + "\r\nContent-Type: application/json\r\nAccept: application/json\r\nAuthorization: Bearer " + bearerGC + "\r\n\r\n" + string(js) + "\r\n"
 		fmt.Fprint(conn, payload)
 		time1 := time.Now()
 		go Speed(conn, bearerGC)
 
-		fmt.Println("[INFO] Sent:", formatTime(time1), "MS")
+		fmt.Println("[INFO] Sent:", time2.Sub(time1), "MS")
 		if i == 6 {
 			break
 
