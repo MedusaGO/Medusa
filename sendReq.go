@@ -1,14 +1,19 @@
 package main
 
 import (
+	"bytes"
 	"crypto/tls"
 	"fmt"
+	"net/http"
 	"net/url"
 	"strconv"
 	"time"
 )
 
-/*
+func httpSpeed(resp *http.Response, sentTime time.Time) {
+	fmt.Println("[+]", resp.StatusCode, "Sent Request @:", formatTime(sentTime))
+}
+
 func sendMojangRequestsGC(name, bearerGC string) string {
 
 	for i := 0; i != 6; i++ {
@@ -16,20 +21,21 @@ func sendMojangRequestsGC(name, bearerGC string) string {
 		req, _ := http.NewRequest("POST", "https://api.minecraftservices.com/minecraft/profile",
 			bytes.NewBuffer(js))
 		req.Header.Add("Accept", "application/json")
-		req.Header.Add("Authorization", "Bearer "+bearerGC)
 		req.Header.Add("Content-Type", "application/json")
+		req.Header.Add("Authorization", "Bearer "+bearerGC)
 
 		resp, _ := http.DefaultClient.Do(req)
 
 		sentTime := time.Now()
-		fmt.Println("[+]", resp.StatusCode, "Sent Request @:", formatTime(sentTime))
+
+		go httpSpeed(resp, sentTime)
+
 		if i == 6 {
 			break
 		}
 	}
 	return ("a")
 }
-*/
 
 func socketSendingMS(url1 string, bearerMS string, name string, dropDelay float64) {
 	oo, _ := url.Parse(url1)
