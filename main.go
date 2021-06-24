@@ -121,13 +121,14 @@ func main() {
 			}
 		*/
 
+		fmt.Print("\n")
+
 		dropStamp := time.Unix(unixINPUT, 0)
 		delay := dropDelay
 
 		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
 
-		socketSending(bearer, name)
-		fmt.Println("test")
+		go socketSending(bearer, name)
 
 	} else if options == 2 {
 
@@ -159,6 +160,8 @@ func main() {
 		fmt.Println("[INFO] Unix Timestamp [TEMP]:")
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
+
+		fmt.Print("\n")
 
 		dropStamp := time.Unix(unixINPUT, 0)
 		delay := dropDelay
@@ -195,6 +198,8 @@ func main() {
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
 
+		fmt.Print("\n")
+
 		dropStamp := time.Unix(unixINPUT, 0)
 		delay := dropDelay
 
@@ -203,7 +208,7 @@ func main() {
 		if verSel == 1 {
 			go testingGC(name, bearerGC)
 		} else if verSel == 2 {
-			sendMojangRequestsGC(name, bearerGC)
+			go sendMojangRequestsGC(name, bearerGC)
 		} else {
 			fmt.Println("[ERR] Please choose the correct input..")
 			os.Exit(403)
@@ -232,6 +237,8 @@ func main() {
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
 
+		fmt.Print("\n")
+
 		dropStamp := time.Unix(unixINPUT, 0)
 		delay := dropDelay
 
@@ -240,5 +247,7 @@ func main() {
 		go socketSendingMS(url1, bearerMS, name)
 
 	}
+
+	time.Sleep(10 * time.Second)
 
 }
