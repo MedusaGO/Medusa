@@ -47,7 +47,7 @@ func socketSendingMS(url1 string, bearerMS string, name string) {
 		time1 := time.Now()
 		go Speed(conn, bearerMS)
 
-		fmt.Println("[INFO] Sent:", time2.Sub(time1), "MS")
+		fmt.Println("[INFO] Sent:", formatTime(time1), "MS", "\n[INFO] Received", formatTime(time2), "MS")
 
 		if i == 2 {
 			break
@@ -64,7 +64,7 @@ func socketSending(bearer string, name string) {
 		time2 := time.Now()
 		fmt.Fprintln(conn, "PUT /minecraft/profile/name/"+name+" HTTP/1.1\r\nHost: api.minecraftservices.com\r\nUser-Agent: Medusa/1.0\r\nAuthorization: bearer "+bearer+"\r\n\r\n")
 		time1 := time.Now()
-		fmt.Println("[INFO] Sent:", time2.Sub(time1), "MS")
+		fmt.Println("[INFO] Sent:", formatTime(time1), "MS", "\n[INFO] Received", formatTime(time2), "MS")
 		go Speed(conn, bearer)
 
 		if i == 2 {
@@ -89,7 +89,7 @@ func testingGC(name string, bearerGC string) {
 		time1 := time.Now()
 		go Speed(conn, bearerGC)
 
-		fmt.Println("[INFO] Sent:", time2.Sub(time1), "MS")
+		fmt.Println("[INFO] Sent:", formatTime(time1), "MS", "\n[INFO] Received", formatTime(time2), "MS")
 		if i == 6 {
 			break
 
