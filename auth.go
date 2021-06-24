@@ -11,7 +11,6 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"time"
 )
 
 /*
@@ -38,10 +37,9 @@ func mojangLogin1() string {
 	}
 
 	test := strings.Split(string(e), ":")
-	time.Sleep(50 * time.Millisecond)
 
 	payload := "{\"username\": \"" + test[0] + "\", \"password\": \"" + test[1] + "\", \"agent\": {\"name\": \"Minecraft\", \"version\": 1}}"
-	time.Sleep(50 * time.Millisecond)
+
 	data := "POST /authenticate HTTP/1.1\r\nContent-Type: application/json\r\nHost: authserver.mojang.com\r\nUser-Agent: AthenaGO/1/1/unknown\r\nContent-Length: " + strconv.Itoa(len(payload)) + "\r\n\r\n" + payload
 
 	var authbytes []byte
@@ -53,12 +51,12 @@ func mojangLogin1() string {
 	conn.Write([]byte(data))
 	conn.Read(authbytes)
 	conn.Close()
-	time.Sleep(10 * time.Millisecond)
+
 	authbytes = []byte(strings.Split(strings.Split(string(authbytes), "\x00")[0], "\r\n\r\n")[1])
 	err = json.Unmarshal(authbytes, &auth)
 
 	client := &http.Client{}
-	time.Sleep(10 * time.Millisecond)
+
 	req, err := http.NewRequest("GET", "https://api.mojang.com/user/security/challenges", nil)
 	if err != nil {
 		fmt.Println("[ERR] An error accured:", err)
@@ -107,7 +105,6 @@ type loginResponse struct {
 }
 
 func mojangLogin2(email, password string) string {
-	time.Sleep(100 * time.Millisecond)
 	postBody, _ := json.Marshal(map[string]string{
 		"username": email,
 		"password": password,
