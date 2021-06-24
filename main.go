@@ -98,30 +98,29 @@ func main() {
 		fmt.Println("[INFO] Unix Timestamp [TEMP]:")
 		b3.Print(">: ")
 		fmt.Scanln(&unixINPUT)
-		/*
-			dropTime_UNIX := unixINPUT
-
-			testee := time.Unix(dropTime_UNIX, 0)
-
-			drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
-
-			fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
-
-			time.Sleep(drop_piece)
-		*/
 
 		dropTime_UNIX := unixINPUT
 
-		snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
+		testee := time.Unix(dropTime_UNIX, 0)
 
-		fmt.Println(snipe_time)
+		drop_piece := time.Until(testee) - time.Duration(dropDelay/float64(1000))
 
-		fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
+		fmt.Print("\n[+] Dropping at @:", testee, drop_piece, "\n")
 
-		for time.Now().Unix() < snipe_time {
-			time.Sleep(1 * time.Millisecond)
-		}
+		time.Sleep(drop_piece)
+		/*
+			dropTime_UNIX := unixINPUT
 
+			snipe_time := dropTime_UNIX - (int64(dropDelay / 1000))
+
+			fmt.Println(snipe_time)
+
+			fmt.Println("\n[+] Dropping at @:", time.Unix(dropTime_UNIX, 0), "\n")
+
+			for time.Now().Unix() < snipe_time {
+				time.Sleep(1 * time.Millisecond)
+			}
+		*/
 		Gold.Println("•:•.•:•.•:•:☾۞☽•:•.•:•.•:•:\n")
 
 		go socketSending(bearer, name, dropDelay)
