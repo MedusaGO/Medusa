@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"time"
@@ -19,6 +18,10 @@ import (
 type nameDropBody struct {
 	UNIX  int64  `json:"UNIX"`
 	Error string `json:"error"`
+}
+
+type nameChangeCheck struct {
+	NamechangeAll string `json:"nameChangeAllowed"`
 }
 
 func getDropTime(name string) (nameDropBody, error) {
@@ -46,19 +49,6 @@ func getDropTime(name string) (nameDropBody, error) {
 func formatTime(t time.Time) string {
 	return t.Format("02:05.99999")
 }
-
-/*
-func askForInput(input string) string {
-	fmt.Println(input)
-
-	reader := bufio.NewReader(os.Stdin)
-	text, _ := reader.ReadString('\n')
-	text = strings.TrimSuffix(text, "\n")
-	text = strings.TrimSuffix(text, "\r")
-
-	return text
-}
-*/
 
 func skinChange(bearer string) string {
 	postBody, _ := json.Marshal(map[string]string{
@@ -107,52 +97,24 @@ func Speed(conn *tls.Conn, bearer string) []byte {
 	return e
 }
 
-type nameChangeCheck struct {
-	NamechangeAll string `json:"nameChangeAllowed"`
-}
-
 func checkChange(bearer string) string {
 
 	check, _ := http.Get("https://api.minecraftservices.com/minecraft/profile/namechange")
 
-	check.Header.Set(
-		"Authorization: bearer", bearer)
+	check.Header.Add("Authorization", "Bearer "+bearer)
+	check.Header.Add("Content-Type", "application/json")
+
 	defer check.Body.Close()
+
 	fmt.Println("HTTP Response Status:", check.StatusCode, http.StatusText(check.StatusCode))
 
-	body, err := ioutil.ReadAll(check.Body)
-	if err != nil {
-		log.Fatalln("[ERR] an error has occured", err)
-	}
+	body, _ := ioutil.ReadAll(check.Body)
 
 	var g nameChangeCheck
 	json.Unmarshal(body, &g)
 
 	return g.NamechangeAll
 
-}
-
-func checkBearer(bearer string) string {
-	req, _ := http.NewRequest("GET", "https://api.minecraftservices.com/minecraft/profile", nil)
-	req.Header.Set("Authorization", "Bearer "+bearer)
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Println("[ERR] Retrying...")
-		checkBearer(bearer)
-	}
-	resp.Body.Close()
-
-	switch resp.StatusCode {
-	case 401:
-		panic("bearer is unauthorized")
-	case 200:
-		return "NC"
-	case 404:
-		return "GC"
-	default:
-		panic("unknown bearer type")
-	}
 }
 
 func sendWebHook(wh string, id string, name string, dropDelay float64) {
