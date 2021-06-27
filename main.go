@@ -126,7 +126,7 @@ func main() {
 		dropStamp := time.Unix(unixINPUT, 0)
 		delay := dropDelay
 
-		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
+		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-(delay*0.85)))))
 
 		go socketSending(bearer, name)
 
@@ -166,7 +166,7 @@ func main() {
 		dropStamp := time.Unix(unixINPUT, 0)
 		delay := dropDelay
 
-		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
+		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-(delay*0.85)))))
 
 		go socketSending(bearer, name)
 
@@ -203,7 +203,7 @@ func main() {
 		dropStamp := time.Unix(unixINPUT, 0)
 		delay := dropDelay
 
-		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
+		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-(delay*0.85)))))
 
 		if verSel == 1 {
 			go testingGC(name, bearerGC)
@@ -242,7 +242,7 @@ func main() {
 		dropStamp := time.Unix(unixINPUT, 0)
 		delay := dropDelay
 
-		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-delay+100))))
+		time.Sleep(time.Until(dropStamp.Add(time.Millisecond * time.Duration(0-(delay*0.85)))))
 
 		go socketSendingMS(url1, bearerMS, name)
 
