@@ -14,15 +14,14 @@ func httpSpeed(resp *http.Response, sentTime time.Time) {
 	fmt.Println("[+]", resp.StatusCode, "Sent Request @:", formatTime(sentTime))
 }
 
-func sendMojangRequestsGC(name, bearerGC string) string {
-
+func sendMojangRequestsGC(name, bearerGC string) {
+	var js = []byte(`{"profileName":"` + name + `"}`)
+	req, _ := http.NewRequest("POST", "https://api.minecraftservices.com/minecraft/profile",
+		bytes.NewBuffer(js))
+	req.Header.Add("Accept", "application/json")
+	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Authorization", "Bearer "+bearerGC)
 	for i := 0; i != 6; i++ {
-		var js = []byte(`{"profileName":"` + name + `"}`)
-		req, _ := http.NewRequest("POST", "https://api.minecraftservices.com/minecraft/profile",
-			bytes.NewBuffer(js))
-		req.Header.Add("Accept", "application/json")
-		req.Header.Add("Content-Type", "application/json")
-		req.Header.Add("Authorization", "Bearer "+bearerGC)
 
 		resp, _ := http.DefaultClient.Do(req)
 
@@ -30,11 +29,7 @@ func sendMojangRequestsGC(name, bearerGC string) string {
 
 		go httpSpeed(resp, sentTime)
 
-		if i == 6 {
-			break
-		}
 	}
-	return ("a")
 }
 
 func socketSendingMS(url1 string, bearerMS string, name string) {
